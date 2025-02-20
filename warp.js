@@ -110,10 +110,10 @@ let rotationVelocity = 0.01;
 window.addEventListener('click', () => {
   setInterval(() => {
     rotationVelocity += 0.01
-  }, 20)
+  }, 40)
   setTimeout(() => {
     window.location.href = 'home.html'
-  }, 1300)
+  }, 2000)
 })
 
 function animate() {
