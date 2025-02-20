@@ -94,7 +94,7 @@ scene.add(points);
 //const mesh = new THREE.Mesh(geo, materialgeo)
 //scene.add(mesh)
 
-const hemiLight = new THREE.HemisphereLight(0xffffff, 0xFFFFFF, 3)
+const hemiLight = new THREE.HemisphereLight(0xffffff, 0xFFFFFFF, 3)
 scene.add(hemiLight)
 
 camera.position.z = 5;
@@ -113,7 +113,7 @@ window.addEventListener('click', () => {
   }, 40)
   setTimeout(() => {
     window.location.href = 'home.html'
-  }, 2000)
+  }, 3000)
 })
 
 function animate() {
