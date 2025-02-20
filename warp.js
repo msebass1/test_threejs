@@ -107,11 +107,13 @@ composer.addPass(bloomPass);
 
 let rotationVelocity = 0.01;
 
-window.addEventListener('click',()=>{
-  rotationVelocity += 0.2
-  setTimeout(()=>{
+window.addEventListener('click', () => {
+  setInterval(()=>{
+  rotationVelocity += 0.01
+  }, 20)
+  setTimeout(() => {
     window.location.href = 'home.html'
-  },1100)
+  }, 1100)
 })
 
 function animate() {

@@ -1,1 +1,1 @@
-# getting-started-with-threejs# test_threejs
+# testing some threejs animations for a proyect
