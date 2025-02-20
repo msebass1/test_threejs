@@ -51,19 +51,28 @@ particles.setAttribute("velocity", new THREE.BufferAttribute(velocities, 1));
 scene.background = createGradientTexture();
 
 const glrfLoader = new GLTFLoader()
-// const necklace = await glrfLoader.loadAsync('./assets/avocado.gltf')
-// scene.add(necklace.scene)
-glrfLoader.load('./assets/avocado.gltf', (glrf) =>{
-  //console.log(glrf.scene.children)
-  const necklace = glrf.scene;
-  necklace.traverse((child) =>{
-    if(child.isMesh){
-      child.geometry.center();
-    }
-  });
-  necklace.scale.set(30,30,30);
-  scene.add(necklace)
+const necklace = await glrfLoader.loadAsync('./assets/avocado.gltf')
+const avocadoScene = necklace.scene
+avocadoScene.scale.set(30, 30, 30)
+avocadoScene.traverse((child) => {
+  if (child.isMesh) {
+    child.geometry.center();
+  }
 })
+
+scene.add(avocadoScene)
+
+// glrfLoader.load('./assets/avocado.gltf', (glrf) =>{
+//   console.log(glrf.scene.children)
+//   const necklace = glrf.scene;
+//   necklace.traverse((child) =>{
+//     if(child.isMesh){
+//       child.geometry.center();
+//     }
+//   });
+//   necklace.scale.set(30,30,30)
+//   scene.add(necklace)
+// })
 
 const loader = new THREE.TextureLoader();
 
@@ -79,7 +88,7 @@ scene.add(points);
 
 // Roca
 //const materialgeo = new THREE.MeshStandardMaterial({
- // map: loader.load("./assets/cliff_side_diff_4k.jpg")
+// map: loader.load("./assets/cliff_side_diff_4k.jpg")
 //})
 
 //const mesh = new THREE.Mesh(geo, materialgeo)
@@ -96,8 +105,18 @@ composer.addPass(new RenderPass(scene, camera));
 const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
 composer.addPass(bloomPass);
 
+let rotationVelocity = 0.01;
+
+window.addEventListener('click',()=>{
+  rotationVelocity += 0.2
+  setTimeout(()=>{
+    window.location.href = 'home.html'
+  },1100)
+})
+
 function animate() {
   requestAnimationFrame(animate);
+  avocadoScene.rotation.y += rotationVelocity;
 
   const positions = particles.attributes.position.array;
   const velocities = particles.attributes.velocity.array;
